@@ -37,4 +37,36 @@ for (let i = 0; i < cards.length; i++) {
     
 }
  
+const btn = document.getElementById("apply-btn");
 
+btn.addEventListener('click',function(){
+    // console.log('clicked');
+
+    //get the value from input
+    const couponElement = document.getElementById("input-field").value;
+    const couponCode=couponElement.split(' ').join('').toUpperCase();
+    
+    console.log(couponCode);
+    // console.log(couponElement.value);
+    if (totalPrice >= 200) {
+      if (couponCode === "SELL200") {
+        // console.log('milse');
+        const discountElement = document.getElementById("discountPrice");
+        const discounAmount=totalPrice*0.2;
+        discountElement.innerText=discounAmount.toFixed(2);
+
+        //total price
+        const restTotal=document.getElementById('total');
+        restTotal.innerText=totalPrice- discounAmount.toFixed(2);
+        document.getElementById("input-field").value='';
+
+      } else {
+        alert("Invalid coupon code");
+        document.getElementById("input-field").value = "";
+      }
+    } else {
+      alert("minimum 200$ spend");
+      document.getElementById("input-field").value = "";
+    }
+
+})
